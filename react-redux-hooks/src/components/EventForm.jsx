@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
-// import reducer from '../reducers/reducer';
+import { CREATE_EVENT, DELETE_ALL_EVENT } from './actions';
 
 const EventForm = ({ state, dispatch }) => {
-  // const [state, dispatch] = useReducer(reducer, []);
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
-  // console.log(state, 'eventform');
 
   const addEvent = (e) => {
     e.preventDefault();
     dispatch({
-      type: 'CREATE_EVENT',
+      type: CREATE_EVENT,
       title,
       body,
     });
@@ -21,10 +19,9 @@ const EventForm = ({ state, dispatch }) => {
   const deleteAllEvents = (e) => {
     e.preventDefault();
     const result = window.confirm('全てのイベントを本当に削除していいですか？');
-    if (result) dispatch({ type: 'DELETE_ALL_EVENTS' });
+    if (result) dispatch({ type: DELETE_ALL_EVENT });
   };
 
-  // どちらかが、空なら作成できない
   const unCreatable = title === '' || body === '';
 
   return (
