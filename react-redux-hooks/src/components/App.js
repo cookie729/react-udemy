@@ -1,6 +1,7 @@
 import React, { useReducer, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import Event from './Event';
 import reducer from '../reducers/reducer';
 
 const App = () => {
@@ -18,8 +19,6 @@ const App = () => {
     setTitle('');
     setBody('');
   };
-
-  console.log({ state });
 
   return (
     <>
@@ -51,7 +50,7 @@ const App = () => {
           </button>
           <button className='btn btn-danger'>全てのイベントを削除する</button>
         </form>
-        
+
         <h4>イベント一覧</h4>
         <table className='table table-hover'>
           <thead>
@@ -61,7 +60,11 @@ const App = () => {
               <th>ボディ</th>
             </tr>
           </thead>
-          <tbody></tbody>
+          <tbody>
+            {state.map((event, index) => (
+              <Event key={index} event={event} dispatch={dispatch} />
+            ))}
+          </tbody>
         </table>
       </div>
     </>
