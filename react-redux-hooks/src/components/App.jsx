@@ -3,10 +3,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Events from './Events';
 import EventForm from './EventForm';
 import AppContext from '../contexts/AppContext';
-import reducer from '../reducers/reducer';
+import reducer from '../reducers/events';
 
 const App = () => {
-  const [state, dispatch] = useReducer(reducer, []);
+  const initialState = {
+    events: [],
+    operationLogs: [],
+  };
+  const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <>
       <AppContext.Provider value={{ state, dispatch }}>

@@ -39,8 +39,7 @@ import {
 //    title: '2020東京オリンピックを開催します！つきましては、、、、、'
 //   }
 // ]
-
-const reducer = (state = [], action) => {
+const events = (state = [], action) => {
   switch (action.type) {
     case CREATE_EVENT:
       const event = { title: action.title, body: action.body };
@@ -56,4 +55,4 @@ const reducer = (state = [], action) => {
   }
 };
 
-export default reducer;
+export default events;
