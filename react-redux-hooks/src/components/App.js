@@ -20,6 +20,15 @@ const App = () => {
     setBody('');
   };
 
+  const deleteAllEvents = (e) => {
+    e.preventDefault();
+    const result = window.confirm('全てのイベントを本当に削除していいですか？');
+    if (result) dispatch({ type: 'DELETE_ALL_EVENTS' });
+  };
+
+  // どちらかが、空なら作成できない
+  const unCreatable = title === '' || body === '';
+
   return (
     <>
       <div className='container-fluid'>
@@ -45,10 +54,20 @@ const App = () => {
             />
           </div>
 
-          <button className='btn btn-primary' onClick={addEvent}>
+          <button
+            className='btn btn-primary'
+            onClick={addEvent}
+            disabled={unCreatable}
+          >
             イベントを作成する
           </button>
-          <button className='btn btn-danger'>全てのイベントを削除する</button>
+          <button
+            className='btn btn-danger'
+            onClick={deleteAllEvents}
+            disabled={state.length === 0}
+          >
+            全てのイベントを削除する
+          </button>
         </form>
 
         <h4>イベント一覧</h4>
